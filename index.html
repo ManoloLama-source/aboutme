@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Profile | Manu - ASIR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* CSS Variables for easy color management */
+        :root {
+            --color-principal: #007bff; /* Vibrant Blue (IT/Tech) */
+            --color-secundario: #0056b3; /* Darker Blue */
+            --color-fondo: #f8f9fa; /* Very Light Gray */
+            --color-texto-oscuro: #343a40; /* Near Black */
+            --color-card-fondo: #ffffff;
+            --color-acento-progreso: #28a745; /* Green for progress/learning */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--color-fondo);
+            color: var(--color-texto-oscuro);
+            line-height: 1.6;
+        }
+
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--color-card-fondo);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        /* --- Header and Presentation --- */
+        .presentacion {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--color-fondo);
+            margin-bottom: 30px;
+        }
+
+        .presentacion h1 {
+            color: var(--color-secundario);
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .presentacion p {
+            font-size: 1.1em;
+            color: #6c757d;
+        }
+
+        .presentacion .rol {
+            display: inline-block;
+            background-color: var(--color-principal);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Main Content (Sections) --- */
+        .secciones-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Main column for Skills, Side column for Learning/Contact */
+            gap: 30px;
+        }
+
+        .seccion {
+            padding: 25px;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .seccion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .seccion h2 {
+            color: var(--color-principal);
+            border-bottom: 3px solid var(--color-principal);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        /* --- Technologies and Tools (Skills) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            padding: 15px;
+            background-color: #e9ecef;
+            border-left: 4px solid var(--color-secundario);
+            border-radius: 4px;
+        }
+
+        .skill-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--color-texto-oscuro);
+        }
+        
+        /* Skill Icons */
+        .skill-item i {
+            color: var(--color-secundario);
+            margin-right: 8px;
+        }
+
+        /* --- Experience --- */
+        .experiencia h2 {
+            border-bottom-color: var(--color-acento-progreso); /* Use a different color to differentiate */
+            color: var(--color-acento-progreso);
+        }
+        
+        .experiencia-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid var(--color-acento-progreso);
+        }
+        
+        .experiencia-item h3 {
+            margin: 0 0 5px 0;
+            color: var(--color-texto-oscuro);
+            font-size: 1.2em;
+        }
+        
+        .experiencia-item p {
+            margin: 0;
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        /* --- Currently Learning --- */
+        .aprendizaje-lista li {
+            background-color: var(--color-fondo);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--color-acento-progreso);
+            font-weight: 500;
+        }
+        
+        .aprendizaje-lista i {
+            color: var(--color-acento-progreso);
+            margin-right: 10px;
+        }
+
+        /* --- Find Me At --- */
+        .contacto a {
+            display: block;
+            margin-bottom: 15px;
+            padding: 10px;
+            /* GitHub color */
+            background-color: #333; 
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        /* Specific Email style */
+        .contacto a.email-link {
+            background-color: var(--color-principal);
+        }
+        
+        .contacto a.email-link:hover {
+            background-color: var(--color-secundario);
+        }
+
+        .contacto a:hover {
+            background-color: #555; /* Slightly lighter shade for hover effect on GitHub */
+        }
+        
+        .contacto i {
+            margin-right: 10px;
+        }
+
+        /* --- Footer/Final Note --- */
+        .pie-pagina {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ced4da;
+            color: #6c757d;
+        }
+
+
+        /* --- Media Queries (Responsive Design) --- */
+        @media (max-width: 768px) {
+            .secciones-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+
+            .contenedor {
+                padding: 20px;
+            }
+
+            .seccion {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <header class="presentacion">
+            <h1><i class="fas fa-terminal"></i> Hi there! I'm <strong>Manu</strong></h1>
+            <p class="rol"><i class="fas fa-graduation-cap"></i> Student of <strong>Networked IT Systems Administration (ASIR)</strong></p>
+            <p>Passionate about <strong>systems administration</strong>, <strong>networking</strong>, <strong>cybersecurity</strong>, and <strong>automation</strong>. Seeking opportunities to grow professionally and contribute to the IT world.</p>
+        </header>
+
+        <section class="secciones-grid">
+            <div>
+                <section class="seccion">
+                    <h2><i class="fas fa-tools"></i> Technologies & Tools</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <strong><i class="fas fa-server"></i> Operating Systems</strong>
+                            Linux (Debian, Ubuntu), Windows Server
+                        </div>
+                        <div class="skill-item">
+                            <strong><i class="fas fa-network-wired"></i> Networking</strong>
+                            Router/Switch configuration, VLANs, TCP/IP protocols
+                        </div>
+                        <div class="skill-item">
+                            <strong><i class="fas fa-cloud"></i> Virtualization & Cloud</strong>
+                            VirtualBox, Docker
+                        </div>
+                        <div class="skill-item">
+                            <strong><i class="fas fa-database"></i> Databases</strong>
+                            MySQL
+                        </div>
+                        <div class="skill-item">
+                            <strong><i class="fas fa-shield-alt"></i> Security</strong>
+                            Permissions management, Backups
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="seccion experiencia" style="margin-top: 30px;">
+                    <h2><i class="fas fa-briefcase"></i> Relevant Experience</h2>
+                    <div class="experiencia-item">
+                        <h3>Academia Tecnoszuia</h3>
+                        <p>La Zubia, Granada | Assistance and Support (Detail role if applicable)</p>
+                    </div>
+                </section>
+
+            </div>
+
+            <div>
+                <section class="seccion">
+                    <h2><i class="fas fa-chart-line"></i> Currently Learning</h2>
+                    <ul class="aprendizaje-lista" style="list-style: none; padding: 0;">
+                        <li><i class="fab fa-linux"></i> Advanced <strong>Linux</strong> Administration</li>
+                        <li><i class="fas fa-lock"></i> <strong>Network Security</strong></li>
+                        <li><i class="fas fa-project-diagram"></i> DNS & DHCP Server Management</li>
+                    </ul>
+                </section>
+
+                <section class="seccion contacto" style="margin-top: 30px;">
+                    <h2><i class="fas fa-globe"></i> Find Me At:</h2>
+                    
+                    <a href="mailto:ciscomanu16@gmail.com" target="_blank" class="email-link">
+                        <i class="fas fa-envelope"></i> Email: ciscomanu16@gmail.com
+                    </a>
+                    
+                    <a href="[https://github.com/msanoli2503-wq]" target="_blank">
+                         <i class="fab fa-github"></i> GitHub 
+                    </a>
+                </section>
+            </div>
+        </section>
+
+        <footer class="pie-pagina">
+            ✨ <strong>Thank you for visiting my profile. Always open to collaborating on projects and learning new technologies.</strong>
+        </footer>
+
+    </div>
+</body>
+</html>
