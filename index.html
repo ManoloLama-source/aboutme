@@ -55,21 +55,17 @@
             color: var(--color-secundario);
             font-size: 2.5em;
             margin-bottom: 5px;
-            /* Damos una altura mínima para evitar el "salto" de página mientras se escribe */
             min-height: 1.2em; 
         }
         
-        /* Contenedor del texto que se escribirá */
         #typing-text-full {
             white-space: nowrap; 
             overflow: hidden; 
             display: inline-block; 
-            border-right: .15em solid var(--color-principal); /* Cursor */
+            border-right: .15em solid var(--color-principal);
             animation: blink-caret .75s step-end infinite;
-            /* La anchura (width) será controlada por el JS al escribir */
         }
 
-        /* Keyframes para el cursor parpadeante (mientras escribe y al terminar) */
         @keyframes blink-caret {
             from, to { border-color: transparent }
             50% { border-color: var(--color-principal); }
@@ -106,7 +102,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 0; 
             animation: sectionFadeIn 0.8s ease-out forwards;
-            animation-delay: var(--delay); /* Controlado en el HTML */
+            animation-delay: var(--delay); 
         }
 
         @keyframes sectionFadeIn {
@@ -158,8 +154,7 @@
             margin-right: 8px;
         }
 
-        /* ... (Resto del CSS idéntico) ... */
-
+        /* --- Experience & Learning --- */
         .experiencia h2 {
             border-bottom-color: var(--color-acento-progreso); 
             color: var(--color-acento-progreso);
@@ -197,36 +192,40 @@
             margin-right: 10px;
         }
 
-        .contacto a {
+        /* --- CONTACTO (AQUÍ ESTÁ EL ARREGLO) --- */
+        
+        .contacto-item {
             display: block;
             margin-bottom: 15px;
-            padding: 10px;
-            color: white;
+            padding: 12px; /* Un poco más de relleno */
+            color: white !important; /* Forzar texto blanco */
             text-decoration: none;
             text-align: center;
             border-radius: 8px;
-            transition: background-color 0.3s ease;
             font-weight: bold;
+            border: none;
         }
         
-        .contacto a.email-link {
-            background-color: var(--color-principal);
-        }
-        
-        .contacto a.email-link:hover {
-            background-color: var(--color-secundario);
+        .contacto-item i {
+            margin-right: 10px;
         }
 
-        .contacto a.github-link {
+        /* Estilo ESPECÍFICO para el Email estático */
+        .email-display {
+            background-color: #007bff; /* Color fijo por si falla la variable */
+            background-color: var(--color-principal);
+            cursor: default;
+        }
+
+        /* Estilo para GitHub */
+        .github-link {
+            background-color: #24292e; /* Color fijo por si falla la variable */
             background-color: var(--github-color); 
+            transition: background-color 0.3s ease;
         }
         
-        .contacto a.github-link:hover {
+        .github-link:hover {
             background-color: #44494f; 
-        }
-        
-        .contacto i {
-            margin-right: 10px;
         }
 
         .pie-pagina {
@@ -294,8 +293,8 @@
                 <section class="seccion experiencia" style="margin-top: 30px; --delay: 1.1s;">
                     <h2><i class="fas fa-briefcase"></i> Relevant Experience</h2>
                     <div class="experiencia-item">
-                        <h3>Academia Tecnoszuia</h3>
-                        <p>La Zubia, Granada | Assistance and Support </p>
+                        <h3>Open to learn </h3>
+                        <p></p>
                     </div>
                 </section>
             </div>
@@ -313,11 +312,11 @@
                 <section class="seccion contacto" style="margin-top: 30px; --delay: 1.7s;">
                     <h2><i class="fas fa-globe"></i> Find Me At:</h2>
                     
-                    <div class="contacto-item email-static">
-                        <i class="fas fa-envelope"></i> Email:luismanuelsanchezolivos@gmail.com
+                    <div class="contacto-item email-display">
+                        <i class="fas fa-envelope"></i> luismanuelsanchezolivos@gmail.com
                     </div>
                     
-                    <a href="https://github.com/msanoli2503-wq" target="_blank" class="github-link">
+                    <a href="https://github.com/msanoli2503-wq" target="_blank" class="contacto-item github-link">
                          <i class="fab fa-github"></i> GitHub 
                     </a>
                 </section>
@@ -333,45 +332,32 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const typingTextElement = document.getElementById('typing-text-full');
-            // Texto completo que se escribirá, INCLUYENDO las etiquetas HTML
             const fullText = '<i class="fas fa-terminal"></i> Hi there! I\'m <strong>Manu</strong>';
             
             let charIndex = 0;
-            
-            // Aseguramos que el CSS del span está listo para la animación
             typingTextElement.style.animation = 'blink-caret .75s step-end infinite';
 
             function typeWriter() {
                 if (charIndex < fullText.length) {
                     let char = fullText.charAt(charIndex);
-                    
-                    // Lógica para manejar etiquetas HTML:
                     if (char === '<') {
-                        // Si es una etiqueta, busca el final '>'
                         let endIndex = fullText.indexOf('>', charIndex);
                         if (endIndex !== -1) {
-                            // Añade la etiqueta completa de una sola vez
                             typingTextElement.innerHTML += fullText.substring(charIndex, endIndex + 1);
-                            charIndex = endIndex + 1; // Salta al final de la etiqueta
+                            charIndex = endIndex + 1;
                         } else {
-                            // Caso raro (improbable), solo añade el '<'
                             typingTextElement.innerHTML += char;
                             charIndex++;
                         }
                     } else {
-                        // Si es texto normal, añade un carácter
                         typingTextElement.innerHTML += char;
                         charIndex++;
                     }
-                    // Velocidad de escritura (más rápida para que sea "suave" y no "lenta")
-                    setTimeout(typeWriter, 50); // 50ms es una velocidad fluida
+                    setTimeout(typeWriter, 50);
                 } else {
-                    // Terminó de escribir, el cursor se mantiene parpadeando gracias al CSS
-                    typingTextElement.style.width = 'auto'; // Ajusta el ancho
+                    typingTextElement.style.width = 'auto'; 
                 }
             }
-            
-            // Inicia la escritura después de 500ms
             setTimeout(typeWriter, 600); 
         });
     </script>
