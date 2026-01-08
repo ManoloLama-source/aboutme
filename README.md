@@ -26,10 +26,6 @@
 
 ---
 
-## 🌐 Encuéntrame en:
- 
-- ✉️ [Email](mailto:ciscomanu16@gmail.com)  
-
 ---
 
 ✨ *Gracias por visitar mi perfil. Siempre abierto a colaborar en proyectos y aprender nuevas tecnologías.*
