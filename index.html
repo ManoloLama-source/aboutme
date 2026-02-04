@@ -10,16 +10,17 @@
         :root {
             --color-principal: #007bff;
             --color-secundario: #0056b3;
-            --color-fondo: #ffffff; /* Fondo ahora es blanco */
+            --color-fondo: #ffffff; 
             --color-texto-oscuro: #212529;
             --color-acento-progreso: #28a745;
             --github-color: #24292e;
+            --linkedin-color: #0077b5; /* Nuevo color LinkedIn */
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0; /* Eliminados huecos exteriores */
+            padding: 0; 
             background-color: var(--color-fondo);
             color: var(--color-texto-oscuro);
             line-height: 1.6;
@@ -28,12 +29,12 @@
 
         /* --- CONTENEDOR FULL WIDTH --- */
         .contenedor {
-            width: 100%; /* Ocupa todo el ancho */
+            width: 100%; 
             max-width: 100%; 
             margin: 0;
             background-color: #ffffff;
             padding: 50px;
-            box-sizing: border-box; /* Para que el padding no cree scroll horizontal */
+            box-sizing: border-box; 
             opacity: 0; 
             animation: fadeIn 0.8s ease-in-out forwards;
         }
@@ -202,8 +203,13 @@
             transition: opacity 0.3s ease;
         }
         
+        /* Estilo GitHub */
         .github-link { background-color: var(--github-color); }
         .github-link:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* Estilo LinkedIn (NUEVO) */
+        .linkedin-link { background-color: var(--linkedin-color); }
+        .linkedin-link:hover { opacity: 0.9; transform: scale(1.02); }
 
         .pie-pagina {
             text-align: center;
@@ -297,10 +303,15 @@
                 </section>
 
                 <section class="seccion" style="--delay: 1.2s;">
-                    <h2><i class="fas fa-link"></i> Portfolio</h2>
+                    <h2><i class="fas fa-link"></i> Portfolio & Contact</h2>
+                    
                     <a href="https://github.com/msanoli2503-wq" target="_blank" class="contacto-item github-link">
                          <i class="fab fa-github"></i> GitHub Profile
                     </a>
+
+                    <a href="https://www.linkedin.com/in/manuel-sanchez-839a59398/" target="_blank" class="contacto-item linkedin-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn Profile
+                   </a>
                 </section>
             </div>
         </section>
