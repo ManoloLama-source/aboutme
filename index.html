@@ -6,7 +6,7 @@
     <title>Manu | Administrador de sistemas junior (ASIR) y estudiante en la UGR</title>
     <meta name="description" content="Portfolio y CV de Manu: técnico superior en ASIR y estudiante del Grado en Información y Documentación en la Universidad de Granada. Linux, redes, virtualización, bases de datos y ciberseguridad.">
     <meta property="og:title" content="Manu | Administrador de sistemas junior">
-    <meta property="og:description" content="Técnico superior en ASIR y estudiante de Información y Documentación en la UGR. Disponible para trabajar.">
+    <meta property="og:description" content="Técnico superior en ASIR y estudiante de Información y Documentación en la UGR.">
     <meta property="og:type" content="profile">
     <meta name="theme-color" content="#0F1B3D">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230F1B3D'/><text x='50' y='68' font-family='monospace' font-size='54' font-weight='700' text-anchor='middle' fill='%23FFB020'>&gt;_</text></svg>">
@@ -57,9 +57,9 @@
 
         .wrap {
             width: 100%;
-            max-width: 1160px;
+            max-width: 1440px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 clamp(20px, 5vw, 80px);
         }
 
         /* ---------- TOP BAR ---------- */
@@ -125,7 +125,7 @@
         .hero-grid {
             display: grid;
             grid-template-columns: 1.05fr 1fr;
-            gap: 56px;
+            gap: clamp(40px, 6vw, 110px);
             align-items: center;
         }
 
@@ -293,8 +293,8 @@
 
         .main-grid {
             display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 56px;
+            grid-template-columns: 1.7fr 1fr;
+            gap: clamp(40px, 5vw, 96px);
             align-items: start;
         }
 
@@ -314,6 +314,20 @@
         .bloque .sub {
             margin: 0 0 26px;
             color: var(--text-soft);
+        }
+
+        /* ---------- SOBRE MÍ ---------- */
+        .about-texto {
+            margin: 18px 0 0;
+            padding-left: 22px;
+            border-left: 4px solid var(--amber);
+            font-family: var(--f-display);
+            font-weight: 500;
+            font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            max-width: 60ch;
         }
 
         /* ---------- RACK (skills) ---------- */
@@ -584,6 +598,79 @@
             font-size: 0.9rem;
         }
 
+        /* ---------- MICROANIMACIONES ---------- */
+        .hito, .tarjeta {
+            transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+        }
+        .hito:hover, .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 32px -18px rgba(15,27,61,0.35);
+            border-color: #C9D2E8;
+        }
+        .busco:hover { box-shadow: 0 18px 36px -16px rgba(255,176,32,0.65); border-color: var(--amber); }
+
+        .unidad { transition: background-color .2s, border-color .2s, transform .25s cubic-bezier(.2,.8,.2,1); }
+        .unidad:hover { transform: translateX(6px); }
+        .unidad > i { transition: transform .3s cubic-bezier(.3,1.6,.5,1), color .2s; }
+        .unidad:hover > i { transform: scale(1.18); color: var(--amber); }
+
+        .chip, .tag { transition: transform .2s ease, background-color .2s, border-color .2s, color .2s; }
+        .chip:hover { transform: translateY(-2px); background: rgba(255,176,32,0.18); border-color: rgba(255,176,32,0.5); color: #FFE3A6; }
+        .tag:hover { transform: translateY(-2px); background: var(--ink); border-color: var(--ink); color: var(--white); }
+
+        .aprendiendo li { transition: transform .2s ease; }
+        .aprendiendo li:hover { transform: translateX(4px); }
+        .aprendiendo i { transition: background-color .2s, color .2s, transform .3s cubic-bezier(.3,1.6,.5,1); }
+        .aprendiendo li:hover i { background: var(--amber); color: var(--ink); transform: rotate(-8deg) scale(1.08); }
+
+        .idioma { transition: padding-left .2s ease; }
+        .idioma:hover { padding-left: 6px; }
+        .nivel { transition: background-color .2s, color .2s; }
+        .idioma:hover .nivel { background: var(--amber); color: var(--ink); }
+
+        .btn i { transition: transform .25s cubic-bezier(.3,1.6,.5,1); }
+        .btn:hover i { transform: scale(1.2) rotate(-6deg); }
+
+        .terminal { transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease; }
+        .terminal:hover { transform: rotate(0deg) translateY(-4px); }
+
+        .status { transition: transform .2s ease; }
+        .status:hover { transform: translateY(-2px); }
+
+        .marca span { display: inline-block; transition: transform .4s ease; }
+        .marca:hover span { transform: rotate(360deg); }
+
+        .hito.actual::before { animation: pulse-amber 2.2s infinite; }
+        @keyframes pulse-amber {
+            0% { box-shadow: 0 0 0 0 rgba(255,176,32,0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(255,176,32,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,176,32,0); }
+        }
+
+        .bloque h2 { position: relative; display: inline-block; }
+        .bloque h2::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: -4px;
+            height: 4px; width: 100%;
+            border-radius: 4px;
+            background: var(--amber);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .6s cubic-bezier(.2,.8,.2,1) .15s;
+        }
+        .bloque.visible h2::after, .no-reveal .bloque h2::after { transform: scaleX(0.35); }
+        .bloque h2:hover::after { transform: scaleX(1); }
+
+        /* Aparición suave al hacer scroll (solo si hay JS y no se pide reducir movimiento) */
+        .js-reveal .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1);
+            transition-delay: var(--d, 0s);
+        }
+        .js-reveal .reveal.visible { opacity: 1; transform: none; }
+
         /* ---------- RESPONSIVE ---------- */
         @media (max-width: 960px) {
             .hero-grid, .main-grid, .cta { grid-template-columns: 1fr; }
@@ -605,6 +692,44 @@
             .terminal-cuerpo { min-height: 300px; padding: 16px; }
             .cta { padding: 40px 24px; }
             .btn { width: 100%; justify-content: center; }
+        }
+
+
+        /* ---------- MÓVIL: ajustes finos ---------- */
+        @media (max-width: 960px) {
+            .hero h1 { margin-top: 8px; }
+            .terminal { max-width: 640px; }
+            .bloque { margin-bottom: 48px; }
+        }
+
+        @media (max-width: 560px) {
+            .topbar .wrap { padding-top: 16px; }
+            .lang-switch button { padding: 8px 16px; }   /* objetivo táctil más grande */
+            .hero { padding: 84px 0 56px; }
+            .hero h1 { font-size: clamp(3.6rem, 20vw, 5rem); }
+            .tagline { font-size: 1.2rem; }
+            .terminal-cuerpo { min-height: 0; font-size: 0.74rem; line-height: 1.55; }
+            .terminal-barra span { font-size: 0.75rem; }
+            main { padding: 56px 0 24px; }
+            .bloque h2 { font-size: 1.6rem; }
+            .timeline { padding-left: 26px; }
+            .timeline::before { left: 6px; }
+            .hito { padding: 18px; }
+            .hito::before { left: -27px; }
+            .tarjeta { padding: 20px; }
+            .busco h3 { font-size: 1.25rem; }
+            .chip { font-size: 0.78rem; }
+            .cta { margin-top: 32px; border-radius: 16px; }
+        }
+
+        /* En pantallas táctiles no hay "hover": evitamos que los recuadros se queden levantados al tocarlos */
+        @media (hover: none) {
+            .hito:hover, .tarjeta:hover, .unidad:hover, .chip:hover, .tag:hover,
+            .aprendiendo li:hover, .terminal:hover, .btn:hover, .idioma:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            .idioma:hover { padding-left: 0; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -640,6 +765,7 @@
             .cta p { color: var(--text); }
             .print-links { display: block !important; margin-top: 6px; }
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .js-reveal .reveal { opacity: 1 !important; transform: none !important; }
         }
 
         .print-links { display: none; }
@@ -660,10 +786,9 @@
     <header class="hero" id="top">
         <div class="wrap hero-grid">
             <div>
-                <span class="status"><span class="led" aria-hidden="true"></span><span data-i18n="status">Disponible para trabajar</span></span>
                 <h1>Manu</h1>
                 <p class="tagline" data-i18n="tagline">Sistemas, redes y datos bien ordenados.</p>
-                <p class="hero-intro" data-i18n="intro">Técnico superior en ASIR y estudiante del <strong>Grado en Información y Documentación</strong> en la Universidad de Granada. Administro servidores Linux y Windows, redes y entornos virtualizados, y busco mi primer puesto como administrador de sistemas junior. Además, investigo de forma constante, y ahora mismo estoy centrado en el <strong>análisis de datos</strong>.</p>
+                <p class="hero-intro" data-i18n="intro">Técnico superior en ASIR y estudiante del <strong>Grado en Información y Documentación</strong> en la Universidad de Granada. Administro servidores Linux y Windows, redes y entornos virtualizados, y sigo creciendo como administrador de sistemas. Además, investigo de forma constante, y ahora mismo estoy centrado en el <strong>análisis de datos</strong>.</p>
                 <div class="acciones">
                     <a class="btn btn-primario" href="https://www.linkedin.com/in/manuel-sanchez-839a59398/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i><span data-i18n="btnLinkedin">Escríbeme por LinkedIn</span></a>
                     <a class="btn btn-borde" href="https://github.com/msanoli2503-wq" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i><span data-i18n="btnGithub">Ver mi GitHub</span></a>                </div>
@@ -682,6 +807,11 @@
     <main>
         <div class="wrap main-grid">
             <div>
+                <section class="bloque" id="sobre-mi">
+                    <h2 data-i18n="aboutTitle">Sobre mí</h2>
+                    <p class="about-texto" data-i18n="aboutText">Profesional maduro y versátil, con grandes habilidades de comunicación y una gran empatía, que afronta cada reto con optimismo y con el compromiso de aprender de forma continua, a la vez que fomenta un ambiente de trabajo positivo y colaborativo gracias a su lealtad y su actitud proactiva.</p>
+                </section>
+
                 <section class="bloque" id="skills">
                     <h2 data-i18n="skillsTitle">Lo que sé hacer</h2>
                     <p class="sub" data-i18n="skillsSub">Mi stack técnico, de la red a la base de datos.</p>
@@ -792,9 +922,9 @@
 
             <aside class="lateral">
                 <section class="tarjeta busco">
-                    <h2 data-i18n="lookTitle">Qué busco</h2>
-                    <h3 data-i18n="lookRole">Administrador de sistemas junior</h3>
-                    <p data-i18n="lookDesc">Un puesto de entrada o a media jornada, compatible con la universidad, donde gestionar sistemas, resolver incidencias y mejorar el rendimiento de la red.</p>
+                    <h2 data-i18n="lookTitle">Mi objetivo</h2>
+                    <h3 data-i18n="lookRole">Administrador de sistemas</h3>
+                    <p data-i18n="lookDesc">Seguir creciendo en sistemas, redes y datos: gestionar infraestructura, resolver incidencias y automatizar tareas.</p>
                 </section>
 
                 <section class="tarjeta">
@@ -829,8 +959,8 @@
         <div class="wrap">
             <section class="cta">
                 <div>
-                    <h2 data-i18n="ctaTitle">¿Tienes un puesto para mí?</h2>
-                    <p data-i18n="ctaText">Puedo empezar ya. La forma más rápida de contactarme es por LinkedIn.</p>
+                    <h2 data-i18n="ctaTitle">¿Hablamos?</h2>
+                    <p data-i18n="ctaText">La forma más rápida de contactar conmigo es por LinkedIn.</p>
                     <p class="print-links">LinkedIn: linkedin.com/in/manuel-sanchez-839a59398<br>GitHub: github.com/msanoli2503-wq</p>
                 </div>
                 <div class="acciones">
@@ -849,11 +979,12 @@
         const T = {
             es: {
                 pageTitle: "Manu | Administrador de sistemas junior (ASIR) y estudiante en la UGR",
-                status: "Disponible para trabajar",
                 tagline: "Sistemas, redes y datos bien ordenados.",
-                intro: "Técnico superior en ASIR y estudiante del <strong>Grado en Información y Documentación</strong> en la Universidad de Granada. Administro servidores Linux y Windows, redes y entornos virtualizados, y busco mi primer puesto como administrador de sistemas junior. Además, investigo de forma constante, y ahora mismo estoy centrado en el <strong>análisis de datos</strong>.",
+                intro: "Técnico superior en ASIR y estudiante del <strong>Grado en Información y Documentación</strong> en la Universidad de Granada. Administro servidores Linux y Windows, redes y entornos virtualizados, y sigo creciendo como administrador de sistemas. Además, investigo de forma constante, y ahora mismo estoy centrado en el <strong>análisis de datos</strong>.",
                 btnLinkedin: "Escríbeme por LinkedIn",
                 btnGithub: "Ver mi GitHub",
+                aboutTitle: "Sobre mí",
+                aboutText: "Profesional maduro y versátil, con grandes habilidades de comunicación y una gran empatía, que afronta cada reto con optimismo y con el compromiso de aprender de forma continua, a la vez que fomenta un ambiente de trabajo positivo y colaborativo gracias a su lealtad y su actitud proactiva.",
                 skillsTitle: "Lo que sé hacer",
                 skillsSub: "Mi stack técnico, de la red a la base de datos.",
                 sk1: "Linux y Windows Server", sk1c: "Scripting",
@@ -882,9 +1013,9 @@
                 edu2Title: "Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR)",
                 edu2School: "Ciclo Formativo de Grado Superior",
                 edu2Desc: "Administración de servidores, redes, virtualización, bases de datos, servicios web y seguridad informática.",
-                lookTitle: "Qué busco",
-                lookRole: "Administrador de sistemas junior",
-                lookDesc: "Un puesto de entrada o a media jornada, compatible con la universidad, donde gestionar sistemas, resolver incidencias y mejorar el rendimiento de la red.",
+                lookTitle: "Mi objetivo",
+                lookRole: "Administrador de sistemas",
+                lookDesc: "Seguir creciendo en sistemas, redes y datos: gestionar infraestructura, resolver incidencias y automatizar tareas.",
                 langTitle: "Idiomas", langEs: "Español", langEsLvl: "Nativo", langEn: "Inglés",
                 softTitle: "Cómo trabajo",
                 soft1: "Resuelvo problemas", soft2: "Trabajo en equipo", soft3: "Me adapto rápido", soft4: "Aprendo rápido",
@@ -892,8 +1023,8 @@
                 learnSub: "Investigo y aprendo de forma constante. Ahora mismo, sobre todo, análisis de datos.",
                 learn0: "Análisis de datos con Python",
                 learn2: "Python para administración de sistemas", learn3: "Automatización con Ansible",
-                ctaTitle: "¿Tienes un puesto para mí?",
-                ctaText: "Puedo empezar ya. La forma más rápida de contactarme es por LinkedIn.",
+                ctaTitle: "¿Hablamos?",
+                ctaText: "La forma más rápida de contactar conmigo es por LinkedIn.",
                 footer: "Hecho a mano y desplegado con Linux.",
                 terminal: [
                     { cmd: "whoami" },
@@ -907,18 +1038,19 @@
                     { cmd: "tail -f ~/investigando.log" },
                     { out: "<span class='t-wip'>[en curso]</span> análisis de datos con Python" },
                     { cmd: "systemctl status manu" },
-                    { out: "<span class='t-ok'>●</span> manu.service - Disponible para trabajar" },
+                    { out: "<span class='t-ok'>●</span> manu.service - Administrador de sistemas" },
                     { out: "   Active: <span class='t-ok'>active (running)</span>" },
                     { out: "   <span class='t-dim'>Ubicación: Granada, España</span>" }
                 ]
             },
             en: {
                 pageTitle: "Manu | Junior Systems Administrator (ASIR) and UGR student",
-                status: "Open to work",
                 tagline: "Systems, networks and well-organized data.",
-                intro: "Networked IT Systems Administration graduate (ASIR) and student of the <strong>Bachelor's Degree in Information and Documentation</strong> at the University of Granada. I run Linux and Windows servers, networks and virtualized environments, and I'm looking for my first role as a junior systems administrator. I'm also constantly researching and learning, and right now my focus is <strong>data analysis</strong>.",
+                intro: "Networked IT Systems Administration graduate (ASIR) and student of the <strong>Bachelor's Degree in Information and Documentation</strong> at the University of Granada. I run Linux and Windows servers, networks and virtualized environments, and I keep growing as a systems administrator. I'm also constantly researching and learning, and right now my focus is <strong>data analysis</strong>.",
                 btnLinkedin: "Message me on LinkedIn",
                 btnGithub: "See my GitHub",
+                aboutTitle: "About me",
+                aboutText: "A mature and versatile professional with strong communication skills and high empathy, who approaches every challenge with optimism and a commitment to continuous learning, while fostering a positive, collaborative work environment through loyalty and a proactive attitude.",
                 skillsTitle: "What I can do",
                 skillsSub: "My technical stack, from the network to the database.",
                 sk1: "Linux and Windows Server", sk1c: "Scripting",
@@ -947,9 +1079,9 @@
                 edu2Title: "Higher Technician in Networked IT Systems Administration (ASIR)",
                 edu2School: "Official Higher Vocational Training Degree (Spain)",
                 edu2Desc: "Server administration, networking, virtualization, databases, web services and IT security.",
-                lookTitle: "What I'm looking for",
-                lookRole: "Junior Systems Administrator",
-                lookDesc: "An entry-level or part-time role, compatible with my university studies, where I can manage systems, solve incidents and improve network performance.",
+                lookTitle: "My goal",
+                lookRole: "Systems Administrator",
+                lookDesc: "Keep growing in systems, networks and data: managing infrastructure, solving incidents and automating tasks.",
                 langTitle: "Languages", langEs: "Spanish", langEsLvl: "Native", langEn: "English",
                 softTitle: "How I work",
                 soft1: "Problem solving", soft2: "Teamwork", soft3: "Adaptable", soft4: "Quick learner",
@@ -957,8 +1089,8 @@
                 learnSub: "I research and learn constantly. Right now my main focus is data analysis.",
                 learn0: "Data analysis with Python",
                 learn2: "Python for sysadmins", learn3: "Ansible automation",
-                ctaTitle: "Got a role for me?",
-                ctaText: "I can start right away. LinkedIn is the fastest way to reach me.",
+                ctaTitle: "Let's talk",
+                ctaText: "LinkedIn is the fastest way to reach me.",
                 footer: "Handmade and deployed with Linux.",
                 terminal: [
                     { cmd: "whoami" },
@@ -972,7 +1104,7 @@
                     { cmd: "tail -f ~/research.log" },
                     { out: "<span class='t-wip'>[ongoing]</span> data analysis with Python" },
                     { cmd: "systemctl status manu" },
-                    { out: "<span class='t-ok'>●</span> manu.service - Open to work" },
+                    { out: "<span class='t-ok'>●</span> manu.service - Systems administrator" },
                     { out: "   Active: <span class='t-ok'>active (running)</span>" },
                     { out: "   <span class='t-dim'>Location: Granada, Spain</span>" }
                 ]
@@ -1060,6 +1192,38 @@
                 setLang(b.dataset.lang);
             })
         );
+
+
+        // Aparición al hacer scroll, con un pequeño escalonado dentro de cada grupo
+        (function () {
+            const groups = [
+                ['.bloque', null],
+                ['.rack .unidad', 0.07],
+                ['.timeline .hito', 0.12],
+                ['.lateral .tarjeta', 0.1],
+                ['.cta', null]
+            ];
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                document.documentElement.classList.add('no-reveal');
+                return;
+            }
+            document.documentElement.classList.add('js-reveal');
+            groups.forEach(([sel, step]) => {
+                document.querySelectorAll(sel).forEach(el => {
+                    el.classList.add('reveal');
+                    if (step) {
+                        const idx = Array.from(el.parentElement.children).filter(c => c.matches(sel.split(' ').pop())).indexOf(el);
+                        el.style.setProperty('--d', (idx * step) + 's');
+                    }
+                });
+            });
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        })();
 
         document.getElementById('year').textContent = new Date().getFullYear();
 
